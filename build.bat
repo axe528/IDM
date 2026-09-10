@@ -1,42 +1,43 @@
 @echo off
-title ±àÒë IDM Pro Tool (WPF UI °æ)
+title ç¼–è¯‘ IDM Pro Tool (WPF UI ç‰ˆ)
 
 set "CSC=C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
 set "FW=C:\Windows\Microsoft.NET\Framework64\v4.0.30319"
 set "WPF=%FW%\WPF"
 
 echo ========================================================
-echo        ÕýÔÚ±àÒë IDM Pro Tool (WPF UI ÍêÕû°æ)
+echo        æ­£åœ¨ç¼–è¯‘ IDM Pro Tool (WPF UI å®Œæ•´ç‰ˆ)
 echo ========================================================
 echo.
 
 if not exist "%CSC%" (
-    echo [´íÎó] Î´ÕÒµ½ .NET Framework 64 Î»±àÒëÆ÷: %CSC%
+    echo [é”™è¯¯] æœªæ‰¾åˆ° .NET Framework 64 ä½ç¼–è¯‘å™¨: %CSC%
     pause
     exit /b 1
 )
 
-echo [1/3] ±àÒë WPF Ô´Âë src\Program.cs ...
+echo [1/3] ç¼–è¯‘ WPF æºç  src\Program.cs ...
 "%CSC%" /nologo /target:winexe /optimize+ /platform:x64 /codepage:65001 ^
     /lib:"%WPF%" ^
     /r:System.dll /r:System.Core.dll /r:Microsoft.CSharp.dll /r:System.Xaml.dll ^
     /r:WindowsBase.dll /r:PresentationCore.dll /r:PresentationFramework.dll ^
+    /r:System.Windows.Forms.dll ^
     /win32icon:src\app.ico ^
     /win32manifest:src\app.manifest ^
     /out:IDM_Pro_Tool.exe src\Program.cs
 
 if not %ERRORLEVEL% equ 0 (
     echo.
-    echo [´íÎó] ±àÒëÊ§°Ü£¬Çë¼ì²éÉÏ·½±¨´íÐÅÏ¢¡£
+    echo [é”™è¯¯] ç¼–è¯‘å¤±è´¥ï¼Œè¯·æ£€æŸ¥ä¸Šæ–¹æŠ¥é”™ä¿¡æ¯ã€‚
     pause
     exit /b 1
 )
 
-echo [2/3] ¸´ÖÆ´°¿ÚÍ¼±ê app_icon.png ...
+echo [2/3] å¤åˆ¶çª—å£å›¾æ ‡ app_icon.png ...
 copy /y "src\app_icon.png" "app_icon.png" >nul
 
-echo [3/3] ±àÒëÍê³É: IDM_Pro_Tool.exe
+echo [3/3] ç¼–è¯‘å®Œæˆ: IDM_Pro_Tool.exe
 echo.
-echo ×¢Òâ: ÔËÐÐÐèÒªÍ¬Ä¿Â¼ÏÂµÄ app_icon.png£¨´°¿ÚÍ¼±ê£©¡£
+echo æ³¨æ„: è¿è¡Œéœ€è¦åŒç›®å½•ä¸‹çš„ app_icon.pngï¼ˆçª—å£å›¾æ ‡ï¼‰ã€‚
 echo.
 pause
